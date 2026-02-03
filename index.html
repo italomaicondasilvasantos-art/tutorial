@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material do Tutorial - Italo-online</title>
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Ícones FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ================= ESTILOS GERAIS ================= */
+        :root {
+            --yt-red: #FF0000;
+            --yt-dark: #0F0F0F;
+            --yt-gray: #282828;
+            --text-color: #FFFFFF;
+            --accent: #3EA6FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--yt-dark);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ================= FUNDO ANIMADO ================= */
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(255, 0, 0, 0.1);
+            font-size: 3rem;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        /* ================= CABEÇALHO ================= */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .logo span { color: var(--yt-red); }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(255,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: #ccc;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .character {
+            flex: 1;
+            max-width: 350px;
+            position: relative;
+        }
+
+        /* Personagem olhando para o meio */
+        .character img {
+            width: 100%;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.4));
+            transform: scaleX(-1); /* Inverter para olhar para o vídeo */
+            animation: breathe 3s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scaleX(-1) translateY(0); }
+            50% { transform: scaleX(-1) translateY(-10px); }
+        }
+
+        .video-container {
+            flex: 2;
+            min-width: 300px;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
+            border: 2px solid var(--yt-gray);
+            position: relative;
+            padding-bottom: 33%; /* Aspect ratio placeholder */
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cta-box {
+            width: 100%;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .btn-subscribe {
+            background-color: var(--yt-red);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: pulse 2s infinite;
+        }
+
+        .btn-subscribe:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 20px rgba(255, 0, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+
+        /* ================= PROMPTS AREA ================= */
+        .prompts-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .prompt-card {
+            background: var(--yt-gray);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--yt-red);
+        }
+
+        .prompt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .prompt-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .prompt-content {
+            background: #121212;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #ddd;
+            margin-bottom: 15px;
+            white-space: pre-wrap; /* Mantém quebras de linha */
+            max-height: 150px;
+            overflow-y: auto;
+            border-left: 3px solid var(--yt-red);
+        }
+
+        .btn-copy {
+            background: white;
+            color: black;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+            margin-left: auto;
+        }
+
+        .btn-copy:hover {
+            background: #eee;
+        }
+
+        .btn-copy.copied {
+            background: #4CAF50;
+            color: white;
+        }
+
+        /* ================= TEASER NEXT CLASS ================= */
+        .teaser {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to top, #000, var(--yt-dark));
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .teaser h3 {
+            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            color: transparent;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .teaser p {
+            font-size: 1.2rem;
+            color: var(--yt-red);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .teaser i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--yt-red);
+            animation: ring 4s infinite;
+        }
+
+        @keyframes ring {
+            0% { transform: rotate(0); }
+            5% { transform: rotate(20deg); }
+            10% { transform: rotate(-20deg); }
+            15% { transform: rotate(20deg); }
+            20% { transform: rotate(0); }
+            100% { transform: rotate(0); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; }
+            .character { width: 150px; margin-bottom: -20px; }
+            h1 { font-size: 2rem; }
+            .video-container { width: 100%; padding-bottom: 56.25%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fundo Animado -->
+    <div class="background-effects" id="bg-effects">
+        <!-- Ícones gerados via JS -->
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">Italo<span>-online</span></div>
+        <h1>MATERIAL DO TUTORIAL</h1>
+        <h2>Como Cria um Sistema Delivery gratis e como hospedar ele gratis</h2>
+    </header>
+
+    <!-- Área Principal -->
+    <main>
+        <section class="hero">
+            <!-- Personagem -->
+            <div class="character">
+                <!-- Placeholder de imagem de personagem PNG sem fundo -->
+                <img src="https://image.pngaaa.com/492/6249492-middle.png" alt="Personagem apontando">
+            </div>
+
+            <!-- Vídeo da Aula -->
+            <div class="video-container">
+                <!-- Substitua o ID do vídeo abaixo -->
+                <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID?controls=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Botão CTA -->
+        <div class="cta-box">
+            <a href="LINK_DO_SEU_CANAL_AQUI" target="_blank" class="btn-subscribe">
+                <i class="fab fa-youtube"></i> INSCREVA-SE E DESBLOQUEIE SEU BRINDE
+            </a>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">*Clique para liberar os materiais abaixo</p>
+        </div>
+
+        <!-- Área dos Prompts -->
+        <section class="prompts-container">
+            
+            <!-- PROMPT 1 -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="prompt-title"><i class="fas fa-utensils"></i> PROMPT 1: Criação do Cardápio</span>
+                </div>
+                <div class="prompt-content" id="p1">Crie para mim um cardapio de uma [TIPO DE NEGOCIO] com nomes dos produtos, descrição, adcionais, e valor de cada um, coloque [QUANTIDADE] categorias nesse cardapio, [DEFINA AS CATEGORIAS], e traga especificações dessa [TIPO DE LOJA], de forma profissional</div>
+                <button class="btn-copy" onclick="copiarTexto('p1', this)">
+                    <i class="fas fa-copy"></i> COPIAR PROMPT
+                </button>
+            </div>
+
+            <!-- PROMPT 2 -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="prompt-title"><i class="fab fa-whatsapp"></i> PROMPT 2: Sistema Delivery WhatsApp</span>
+                </div>
+                <div class="prompt-content" id="p2">Crie para mim uma sistema de delivery integrado ao whatsapp [INSERIR NUMERO], e com todo o cardapio abaixo e coloque de acordo com cada produto a imagem de banco de imagens sem direitos autorais, traga com leyalt profissional, com carrosel de banner impactante no heard do sistema, passando de forma infinita e com tres imagens, [TEMA DAS IMAGENS] e em cada card de cada produto, coloque também alem de tudo que tem no cardapio abaixo coloque o botão adciona ao carrinho para o pedido ser feito de forma organizada no whatsapp da empresa.</div>
+                <button class="btn-copy" onclick="copiarTexto('p2', this)">
+                    <i class="fas fa-copy"></i> COPIAR PROMPT
+                </button>
+            </div>
+
+            <!-- PROMPT 3 -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="prompt-title"><i class="fas fa-tools"></i> PROMPT 3: Correções Específicas</span>
+                </div>
+                <div class="prompt-content" id="p3">Corrija os seguintes lugares [LISTE OS LUGARES AQUI] e não mecha nos outros lugares dele</div>
+                <button class="btn-copy" onclick="copiarTexto('p3', this)">
+                    <i class="fas fa-copy"></i> COPIAR PROMPT
+                </button>
+            </div>
+
+            <!-- PROMPT 4 -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="prompt-title"><i class="fas fa-plus-circle"></i> PROMPT 4: Adicionar Funcionalidade</span>
+                </div>
+                <div class="prompt-content" id="p4">coloque nesse sistema [DESCREVA A FUNCIONALIDADE]</div>
+                <button class="btn-copy" onclick="copiarTexto('p4', this)">
+                    <i class="fas fa-copy"></i> COPIAR PROMPT
+                </button>
+            </div>
+
+            <!-- PROMPT 5 -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="prompt-title"><i class="fas fa-code"></i> PROMPT 5: Documentação e Comentários</span>
+                </div>
+                <div class="prompt-content" id="p5">Deixe esse sistema todo comentado para eu saber como autera e troca os links e testos que tem nele assim como cada imagem e preço de produtos e adcionais</div>
+                <button class="btn-copy" onclick="copiarTexto('p5', this)">
+                    <i class="fas fa-copy"></i> COPIAR PROMPT
+                </button>
+            </div>
+
+        </section>
+
+        <!-- Teaser Próxima Aula -->
+        <section class="teaser">
+            <i class="fas fa-bell"></i>
+            <h3>Transformando em SAAS com Painel Admin</h3>
+            <p>PRÓXIMA AULA - ATIVE AS NOTIFICAÇÕES</p>
+        </section>
+    </main>
+
+    <script>
+        // Função para gerar logos flutuantes do YouTube
+        function createFloatingIcons() {
+            const container = document.getElementById('bg-effects');
+            const iconCount = 15;
+
+            for (let i = 0; i < iconCount; i++) {
+                const icon = document.createElement('i');
+                icon.classList.add('fab', 'fa-youtube', 'floating-icon');
+                
+                // Posição aleatória horizontal
+                icon.style.left = Math.random() * 100 + 'vw';
+                
+                // Atraso aleatório na animação para não subirem todos juntos
+                icon.style.animationDelay = Math.random() * 10 + 's';
+                
+                // Tamanho aleatório
+                icon.style.fontSize = (Math.random() * 3 + 1) + 'rem';
+                
+                // Duração aleatória
+                icon.style.animationDuration = (Math.random() * 10 + 10) + 's';
+
+                container.appendChild(icon);
+            }
+        }
+
+        // Função de Copiar Texto
+        function copiarTexto(elementId, btnElement) {
+            const texto = document.getElementById(elementId).innerText;
+            
+            navigator.clipboard.writeText(texto).then(() => {
+                // Feedback visual
+                const originalText = btnElement.innerHTML;
+                btnElement.innerHTML = '<i class="fas fa-check"></i> COPIADO!';
+                btnElement.classList.add('copied');
+                
+                setTimeout(() => {
+                    btnElement.innerHTML = originalText;
+                    btnElement.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Erro ao copiar: ', err);
+                alert('Erro ao copiar. Selecione o texto manualmente.');
+            });
+        }
+
+        // Inicializar efeitos
+        window.addEventListener('load', createFloatingIcons);
+    </script>
+</body>
+</html>
